@@ -1,0 +1,23 @@
+@use "../abstract/mixins" as *;
+
+.u-center-class {
+    text-align: center;
+}
+.u-margin-top-huge {
+    margin-top: 10rem;
+}
+.u-margin-bottom-big {
+    margin-bottom: 8rem;
+    @include respond(tap-port) {
+        margin-bottom: 5rem;
+    }
+}
+.u-margin-bottom-medium {
+    margin-bottom: 4rem;
+    @include respond(tap-port) {
+        margin-bottom: 3rem;
+    }
+}
+.u-margin-bottom-samll {
+    margin-bottom: 1.5rem;
+}

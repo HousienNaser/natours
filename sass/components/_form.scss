@@ -1,0 +1,97 @@
+@use "../abstract/variables" as *;
+@use "../abstract/mixins" as *;
+
+.form {
+    &__group {
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+    &__input {
+        font-size: 1.5rem;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        background-color: rgba($color-white, 0.5);
+        border: none;
+        font-family: inherit;
+        color: inherit;
+        border-bottom: 3px solid transparent;
+        display: block;
+        width: 90%;
+        transition: all 0.5s;
+        @include respond(tap-port) {
+            width: 100%;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+            border-bottom: 3px solid $color-primary;
+        }
+        &:focus:invalid {
+            border-bottom: 3px solid $color-secondary-dark;
+        }
+        &::placeholder {
+            color: $color-grey-dark-2;
+        }
+    }
+    &__label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: 0.7rem;
+        display: block;
+        transition: all 0.3s;
+    }
+    &__input:placeholder-shown + &__label {
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-4rem);
+    }
+    &__radio-group {
+        display: inline-block;
+        width: 40%;
+        margin-left: 3rem;
+        margin-bottom: 3rem;
+
+        @include respond(tap-port) {
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+    }
+    &__radio-input {
+        appearance: none; /* إخفاء الشكل الافتراضي */
+        -webkit-appearance: none;
+        width: 28px;
+        height: 28px;
+        border: 4px solid $color-primary;
+        border-radius: 50%; /* لجعلها دائرة */
+        display: inline-grid;
+        place-content: center; /* توسيط النقطة الداخلية */
+        cursor: pointer;
+        transition: 0.2s all ease-in-out;
+        &:not(:first-child) {
+            margin-left: 3rem;
+        }
+        &::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transform: scale(0); /* مخفية افتراضياً */
+            transition: 0.2s transform ease-in-out;
+            background-color: $color-primary;
+        }
+        &:checked::before {
+            transform: scale(1); /* إظهار النقطة */
+        }
+
+        &:checked {
+            background-color: #e7f3ff;
+            border-color: $color-primary;
+        }
+    }
+    &__radio-lable {
+        margin-left: 0.5rem;
+    }
+}
